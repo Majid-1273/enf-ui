@@ -1,4 +1,4 @@
-import Img from "../assets/Company Directory/localDistributorsImg.png";
+import Img from "../../assets/images/localDistributorsImg.png";
 import { Link } from 'react-router-dom';
 
 const PanelDeals = () => {

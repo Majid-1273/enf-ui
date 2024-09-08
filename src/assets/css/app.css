@@ -1,3 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* footer css below */
+
 .footer {
     color: white;
     font-family: sans-serif;
@@ -130,4 +137,21 @@ ul {
         padding-left: 1rem;
         padding-right: 1rem;
     }
+}
+
+/* IDK whose css was this just copied it from faizan's css file index.css */ 
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .product-image {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 1rem;
 }

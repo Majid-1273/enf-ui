@@ -1,7 +1,7 @@
-import Img1 from "../assets/Company Directory/crystallinePanelsImg1.png";
-import Img2 from "../assets/Company Directory/crystallinePanelsImg2.png";
-import Img3 from "../assets/Company Directory/crystallinePanelsImg3.png";
-import Img4 from "../assets/Company Directory/crystallinePanelsImg4.png";
+import Img1 from "../../assets/images/crystallinePanelsImg1.png";
+import Img2 from "../../assets/images/crystallinePanelsImg2.png";
+import Img3 from "../../assets/images/crystallinePanelsImg3.png";
+import Img4 from "../../assets/images/crystallinePanelsImg4.png";
 
 const EfficiencyPanels = ({ panels }) => {
   const fakeData = [

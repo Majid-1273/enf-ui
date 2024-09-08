@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaGlobe } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
-import logo from "../assets/Company Directory/companyLogo.png"
-import flag from "../assets/Company Directory/countryFlag.png"
+import logo from "../../assets/images/companyLogo.png"
+import flag from "../../assets/images/countryFlag.png"
 
 const ADS = ({ ads }) => {
   const [expandedIndex, setExpandedIndex] = useState(null);

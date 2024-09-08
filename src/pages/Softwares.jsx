@@ -1,11 +1,12 @@
-import NavBar from "../components/NavBar"
-import headerImage from '../assets/Company Directory/headerImgAll.png';
+import NavBar from "../components/NavBar/NavBar"
+import SoftwareCompanies from '../components/SoftwareCompanies/SoftwareCompanies'
+import headerImage from '../assets/images/headerImgAll.png';
 
 const Softwares = () => {
   return (
     <div>
       <NavBar bgImage={headerImage}  main_head={'Solar Software Company'} sub_head={'Company Directory / Software'} />
-      <h1>Softwares</h1>
+      <SoftwareCompanies/>
     </div>
   )
 }

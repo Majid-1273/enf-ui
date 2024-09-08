@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import Logo from "../assets/NavBar/logoGreen.png";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { FaPhone, FaBars, FaTimes, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { useState } from "react";
 import { FaXTwitter } from "react-icons/fa6";
-import "../styles/navhome.css"
+import Logo from "../../assets/images/logoGreen.png";
+import "./navhome.css"
 
 const NavHome = (props) => {
     const { bgImage} = props;

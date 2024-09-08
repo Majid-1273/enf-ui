@@ -1,13 +1,20 @@
-import NavBar from "../components/NavBar"
-import headerImage from '../assets/Company Directory/headerImgAll.png';
+import NavBar from "../components/NavBar/NavBar"
+import AboutUs from '../components/AboutUs/AboutUs'; 
+import WorkProcess from '../components/WorkProcess/WorkProcess';
+import Testimonials from '../components/Testimonials/Testimonials';
+import SolarSolutions from "../components/SolarSolutions/SolarSolutions";
+import headerImage from '../assets/images/headerImgAll.png';
 
-const About_Us = () => {
+const About = () => {
   return (
     <div>
       <NavBar bgImage={headerImage}  main_head={'About Us'} sub_head={'About Us / Home'} />
-      <h1>About</h1>
+      <AboutUs/>
+      <SolarSolutions/>
+      <WorkProcess/>
+      <Testimonials/>
     </div>
   )
 }
 
-export default About_Us
+export default About
