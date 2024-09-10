@@ -1,7 +1,7 @@
 
 const ProductCard = ({ image, name, category, manufacturer }) => {
   return (
-    <div className="relative mx-auto w-4/5 bg-white rounded-xl shadow-md overflow-hidden">
+    <div className="relative mx-auto w-3/5 bg-white rounded-xl shadow-md overflow-hidden">
       <img className="w-full h-4/5 object-cover" src={image} alt={name} />
       <div className="p-4">
         <div className="text-xs font-semibold text-green-500 mb-1">{category}</div>
