@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
+
 import Img1 from "../../assets/images/crystallinePanelsImg1.png";
 import Img2 from "../../assets/images/crystallinePanelsImg2.png";
 import Img3 from "../../assets/images/crystallinePanelsImg3.png";
@@ -13,15 +17,23 @@ const CrystallinePanels = ({ panels }) => {
 
   const dataToDisplay = panels && panels.length > 0 ? panels : fakeData;
 
+  // Initialize AOS on component mount
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Set the animation duration
+      once: true, // Ensure animations run only once when scrolled into view
+    });
+  }, []);
+
   return (
     <div className="px-[5rem] py-6">
-      <div className="text-left">
+      <div className="text-left" data-aos="fade-up">
         <h2 className="text-2xl font-semibold text-green-600">SOLAR PANELS</h2>
         <h3 className="text-3xl font-bold mt-1">Crystalline Panels</h3>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
         {dataToDisplay.map((panel, index) => (
-          <div key={index} className="text-center">
+          <div key={index} className="text-center" data-aos="zoom-in">
             <div className="w-full h-64 bg-gray-200 mb-4 flex items-center justify-center">
               <img src={panel.image} alt={panel.name} className="max-w-full max-h-full object-contain" />
             </div>

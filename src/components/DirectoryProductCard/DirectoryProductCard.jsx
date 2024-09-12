@@ -1,12 +1,25 @@
+import { useEffect } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
 
 export default function DirectoryProductCard({ product }) {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Set the animation duration
+      once: true, // Ensure animations run only once when scrolled into view
+    });
+  }, []);
+
   return (
-    <div className="bg-white rounded-lg shadow-lg p-4 flex space-x-4">
-      <div className="w-1/4 bg-gray-200 rounded-md flex items-center justify-center">
-        <span className="text-gray-500">Image</span>
+    <div 
+      className="bg-white rounded-lg shadow-lg p-4 flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4"
+      data-aos="fade-up"
+    >
+      <div className="w-full md:w-1/4 bg-gray-200 rounded-md flex items-center justify-center">
+        <span className="text-gray-500">Image</span>         {/* yahan img aye gi */}
       </div>
 
-      <div className="w-3/4 flex flex-col justify-between">
+      <div className="w-full md:w-3/4 flex flex-col justify-between">
         <div>
           <h5 className="text-green-600 font-bold">{product.company}</h5>
           <h4 className="text-gray-900 font-bold text-lg">{product.title}</h4>

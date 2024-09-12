@@ -1,7 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css"; // Import AOS styles
 
 const SolarDirectoryProductCard = ({ product }) => {
   const [mainImage, setMainImage] = useState(product.img1);
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Adjust the duration for animation
+    });
+  }, []);
 
   const handleImageClick = (img) => {
     setMainImage(img);
@@ -9,7 +17,10 @@ const SolarDirectoryProductCard = ({ product }) => {
 
   return (
     <>
-      <div className="border p-4 rounded-md shadow-md max-w-md bg-white">
+      <div
+        className="border p-4 rounded-md shadow-md max-w-md bg-white"
+        data-aos="fade-up"
+      >
         <h3 className="text-green-600 font-semibold uppercase">
           {product.company}
         </h3>
@@ -53,7 +64,7 @@ const SolarDirectoryProductCard = ({ product }) => {
       </div>
 
       <div className="flex flex-col items-center">
-        <div className="my-4 w-full max-w-md">
+        <div className="my-4 w-full max-w-md" data-aos="fade-in">
           <img
             src={mainImage}
             alt={product.title}
@@ -61,7 +72,7 @@ const SolarDirectoryProductCard = ({ product }) => {
           />
         </div>
 
-        <div className="flex space-x-2 w-full justify-center">
+        <div className="flex space-x-2 w-full justify-center" data-aos="zoom-in">
           <img
             src={product.img1}
             alt="img1"

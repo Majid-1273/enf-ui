@@ -98,7 +98,7 @@ function Home() {
   };
 
   return (
-    <div className="overflow-x-hidden"> {/* Prevent horizontal scroll */}
+    <div> {/* Prevent horizontal scroll */}
       <NavHome bgImage={headerImage} />
 
       {/* Featured Product Section */}
@@ -125,11 +125,11 @@ function Home() {
         currentIndex={currentIndex}
         handlePrevClick={handlePrevClick}
         handleNextClick={handleNextClick}
-        data-aos="fade-in" // AOS attribute for fade-in animation
+         // AOS attribute for fade-in animation
       />
 
       {/* Tab Navigation */}
-      <TabNavigation selectedTab={selectedTab} setSelectedTab={setSelectedTab} data-aos="fade-up"/>
+      <TabNavigation selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
 
       {/* Directory Section */}
       <DirectorySection
@@ -137,11 +137,11 @@ function Home() {
         items={selectedTab === "Product" ? products : companies}
         currentIndex={currentIndex}
         directoryToShow={directoryToShow}
-        data-aos="fade-up"
+       
       />
 
-      <BusinessNews data-aos="fade-up"/>
-      <PanelDeals data-aos="fade-up"/>
+      <BusinessNews />
+      <PanelDeals />
     </div>
   );
 }

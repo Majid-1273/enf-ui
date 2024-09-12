@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import flag from '../../assets/images/countryFlag.png';
 
 const SoftwareCompanies = () => {
@@ -28,6 +30,7 @@ const SoftwareCompanies = () => {
   const [data, setData] = useState(initialData);
 
   useEffect(() => {
+    AOS.init({ duration: 1000 });
     const storedData = localStorage.getItem('companiesData');
     if (storedData) {
       setData(JSON.parse(storedData));
@@ -39,16 +42,16 @@ const SoftwareCompanies = () => {
       <table className="min-w-full bg-white border">
         <thead>
           <tr className="bg-green-900 text-white">
-            <th className="py-2 px-4 border-b text-left rounded-tl-xl">Index</th>
-            <th className="py-2 px-4 border-b text-left">Company Name</th>
-            <th className="py-2 px-4 border-b text-left">Region</th>
-            <th className="py-2 px-4 border-b text-left">Software Types</th>
-            <th className="py-2 px-4 border-b text-left rounded-tr-xl">Languages</th>
+            <th className="py-2 px-4 border-b text-left rounded-tl-xl" data-aos="fade-down">Index</th>
+            <th className="py-2 px-4 border-b text-left" data-aos="fade-down">Company Name</th>
+            <th className="py-2 px-4 border-b text-left" data-aos="fade-down">Region</th>
+            <th className="py-2 px-4 border-b text-left" data-aos="fade-down">Software Types</th>
+            <th className="py-2 px-4 border-b text-left rounded-tr-xl" data-aos="fade-down">Languages</th>
           </tr>
         </thead>
         <tbody>
           {data.map((item, index) => (
-            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''}>
+            <tr key={index} className={index % 2 === 0 ? 'bg-gray-100' : ''} data-aos="fade-up">
               <td className="py-2 px-4 border-b">{index + 1}</td>
               <td className="py-2 px-4 border-b">{item.company}</td>
               <td className="py-2 px-4 border-b">

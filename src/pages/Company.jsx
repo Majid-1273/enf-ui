@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import NavBar from "../components/NavBar/NavBar"
+import { useState, useEffect } from 'react';
+import NavBar from "../components/NavBar/NavBar";
 import CompanyCard from '../components/CompanyCard/CompanyCard';
 import CompanyProducts from '../components/CompanyProducts/CompanyProducts';
 import CompanyStaff from '../components/CompanyStaff/CompanyStaff';
@@ -10,6 +10,8 @@ import Img4 from '../assets/images/companyDescriptionImg4.png';
 import Img5 from '../assets/images/companyDescriptionImg5.png';
 import Img6 from '../assets/images/companyDescriptionImg6.png';
 import headerImage from '../assets/images/headerImgAll.png';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Company = () => {
   const panelsData = [
@@ -58,6 +60,11 @@ const Company = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
+  // Initialize AOS when the component mounts
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
   const getActiveTabData = () => {
     switch (activeTab) {
       case 'Panels':
@@ -78,24 +85,36 @@ const Company = () => {
   return (
     <div>
       <NavBar bgImage={headerImage} main_head={'Solar Panel Manufacturer'} sub_head={'Company Directory / Solar Panels / Polycrystalline / Horay Solar'} />
-      <CompanyCard />
+      
+      {/* Company Card Section with AOS */}
+      <div data-aos="fade-up">
+        <CompanyCard />
+      </div>
+
       <div className="container mx-auto p-4">
         <div className="flex flex-col lg:flex-row gap-4">
           <div className="flex-1">
-            <div className="flex space-x-4 mb-4">
+            {/* Tab buttons with AOS */}
+            <div className="flex space-x-4 mb-4" data-aos="fade-right">
               <button className={`py-2 px-4 ${activeTab === 'Panels' ? 'bg-white text-black font-bold underline underline-offset-8' : 'bg-gray-200 text-gray-700'}`} onClick={() => setActiveTab('Panels')}>Panels</button>
               <button className={`py-2 px-4 ${activeTab === 'Components' ? 'bg-white text-black font-bold underline underline-offset-8': 'bg-gray-200 text-gray-700'}`} onClick={() => setActiveTab('Components')}>Components</button>
               <button className={`py-2 px-4 ${activeTab === 'Sellers' ? 'bg-white text-black font-bold underline underline-offset-8' : 'bg-gray-200 text-gray-700'}`} onClick={() => setActiveTab('Sellers')}>Sellers</button>
             </div>
-            <CompanyProducts
-              products={getActiveTabData()}
-              activeTab={activeTab}
-              currentPage={currentPage}
-              itemsPerPage={itemsPerPage}
-              handlePageChange={handlePageChange}
-            />
+            
+            {/* Product List Section with AOS */}
+            <div data-aos="fade-up">
+              <CompanyProducts
+                products={getActiveTabData()}
+                activeTab={activeTab}
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                handlePageChange={handlePageChange}
+              />
+            </div>
           </div>
-          <div className="w-full lg:w-1/3">
+
+          {/* Staff Info Section with AOS */}
+          <div className="w-full lg:w-1/3" data-aos="fade-left">
             <CompanyStaff
               staff={staffData}
               businessDetailsPanels={businessDetailsPanelsData}

@@ -1,3 +1,6 @@
+import { useEffect } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
 import { MdOutlineEmail, MdOutlinePhoneInTalk } from 'react-icons/md';
 import { ImFacebook } from 'react-icons/im';
 import { FaInstagram, FaLinkedinIn } from 'react-icons/fa';
@@ -27,8 +30,16 @@ const countries = [
   "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Vatican City", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"
 ];
 
+
 export default function ContactForm() {
-  return (   
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Set the animation duration
+      once: true, // Ensure animations run only once when scrolled into view
+    });
+  }, []);
+
+  return (
     <div className="container mx-auto p-8 min-h-screen bg-gray-100">
       <style jsx>{`
         .icon-background {
@@ -43,13 +54,16 @@ export default function ContactForm() {
         }
       `}</style>
       <div className="flex flex-col md:flex-row h-full">
-        <div className="md:w-1/2 p-4 flex flex-col justify-between">
+        <div 
+          className="md:w-1/2 p-4 flex flex-col justify-between"
+          data-aos="fade-right"
+        >
           <div>
             <h2 className="text-5xl font-bold mb-2">Get in touch</h2>
             <p className="mb-8 text-gray-600 text-xl">Lorem Ipsum Dolor Sit Amet Consectetur. Mi Ipsum Diam</p>
 
             <div className="flex flex-col lg:flex-row lg:space-x-4 mb-4">
-              <div className="flex-1 mb-4">
+              <div className="flex-1 mb-4" data-aos="fade-up">
                 <div className="flex items-center mb-2">
                   <div className="p-2 mr-1 bg-gray-200 rounded-full">
                     <MdOutlineEmail className="text-3xl" />
@@ -59,7 +73,7 @@ export default function ContactForm() {
                 <span className="ml-8 text-lg">info@golio.com</span>
               </div>
 
-              <div className="flex-1 mb-4">
+              <div className="flex-1 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <div className="flex items-center mb-2">
                   <div className="p-2 mr-1 bg-gray-200 rounded-full">
                     <MdOutlineEmail className="text-3xl" />
@@ -71,7 +85,7 @@ export default function ContactForm() {
             </div>
 
             <div className="flex flex-col lg:flex-row lg:space-x-4 mb-4">
-              <div className="flex-1 mb-4">
+              <div className="flex-1 mb-4" data-aos="fade-up">
                 <div className="flex items-center mb-2">
                   <div className="p-2 mr-1 bg-gray-200 rounded-full">
                     <MdOutlinePhoneInTalk className="text-3xl" />
@@ -81,7 +95,7 @@ export default function ContactForm() {
                 <span className="ml-8 text-lg">+1-202-555-0138</span>
               </div>
 
-              <div className="flex-1 mb-4">
+              <div className="flex-1 mb-4" data-aos="fade-up" data-aos-delay="200">
                 <div className="flex items-center mb-2">
                   <div className="p-2 mr-1 bg-gray-200 rounded-full">
                     <MdOutlinePhoneInTalk className="text-3xl" />
@@ -102,9 +116,11 @@ export default function ContactForm() {
               aria-hidden="false"
               tabIndex="0"
               className="rounded-lg mt-4 mb-0"
+              data-aos="fade-up"
+              data-aos-delay="400"
             ></iframe>
 
-            <div className="mt-4">
+            <div className="mt-4" data-aos="fade-up" data-aos-delay="600">
               <h3 className="text-2xl font-bold mb-4">Connect with us</h3>
               <div className="flex space-x-4">
                 <div className="icon-background"><FaInstagram className="text-4xl" /></div>
@@ -116,7 +132,10 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div className="md:w-1/2 p-4 bg-white rounded-lg shadow-lg flex flex-col justify-between">
+        <div 
+          className="md:w-1/2 p-4 bg-white rounded-lg shadow-lg flex flex-col justify-between"
+          data-aos="fade-left"
+        >
           <div>
             <h2 className="text-5xl font-bold mb-4">Contact US</h2>
             <p className="mb-8 text-gray-600 text-xl">Get in contact with us</p>

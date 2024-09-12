@@ -1,12 +1,25 @@
+import React, { useEffect } from 'react';
 import { FaUserCircle, FaInfoCircle } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const CompanyStaff = ({ staff, businessDetailsPanels, businessDetailsInstaller }) => {
+  useEffect(() => {
+    // Initialize AOS
+    AOS.init({ duration: 1000 });
+  }, []);
+
   return (
-    <div className="p-4 space-y-4 bg-white shadow-md rounded-lg">
+    <div className="p-4 space-y-4 bg-white shadow-md rounded-lg" data-aos="fade-up">
       <div className="text-lg font-bold">Staff Information</div>
       <div className="space-y-2">
         {staff.map((member, index) => (
-          <div key={index} className="flex items-center space-x-2">
+          <div
+            key={index}
+            className="flex items-center space-x-2"
+            data-aos="fade-right"
+            data-aos-delay={`${index * 100}`} // Staggered delay for each staff member
+          >
             <FaUserCircle className="text-2xl" />
             <div className="flex-1">
               <div className="font-medium">{member.name}</div>
@@ -18,7 +31,7 @@ const CompanyStaff = ({ staff, businessDetailsPanels, businessDetailsInstaller }
       </div>
 
       <div className="text-lg font-bold">Business Details - Panels</div>
-      <div className="space-y-2 text-base leading-relaxed">
+      <div className="space-y-2 text-base leading-relaxed" data-aos="fade-up">
         <div className="font-medium text-lg">Crystalline</div>
         <div className="text-lg">
           <div className="flex flex-wrap">
@@ -31,14 +44,14 @@ const CompanyStaff = ({ staff, businessDetailsPanels, businessDetailsInstaller }
             ))}
           </div>
           <div className="flex flex-wrap">
-            <div className="font-medium text-md mr-1">Power Range (Wp):</div> 
+            <div className="font-medium text-md mr-1">Power Range (Wp):</div>
             {businessDetailsPanels.powerRange}
           </div>
         </div>
       </div>
 
       <div className="text-lg font-bold">Business Details - Installer</div>
-      <div className="text-lg leading-relaxed">
+      <div className="text-lg leading-relaxed" data-aos="fade-up">
         <div className="font-medium text-lg">Installation sizes:</div>
         <div className="flex flex-wrap">
           {businessDetailsInstaller.sizes.map((size, index) => (

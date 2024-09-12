@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
 
 function ShopCart() {
-  // Initialize the cart items with useState to make them reactive
   const [cartItems, setCartItems] = useState([
     {
       id: 1,
@@ -21,10 +22,10 @@ function ShopCart() {
     },
   ]);
 
-  // Calculate the subtotal
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
   const subtotal = cartItems.reduce((acc, item) => acc + item.pricePerUnit * item.quantity, 0);
 
-  // Handle quantity change
   const handleQuantityChange = (id, delta) => {
     setCartItems((prevItems) =>
       prevItems.map((item) =>
@@ -33,18 +34,43 @@ function ShopCart() {
     );
   };
 
-  // Handle removing an item from the cart
   const handleRemoveItem = (id) => {
     setCartItems((prevItems) => prevItems.filter((item) => item.id !== id));
   };
 
-  // Handle emptying the cart
   const handleEmptyCart = () => {
-    setCartItems([]);
+    setShowConfirmation(true);
   };
 
+  const confirmEmptyCart = () => {
+    setCartItems([]);
+    setShowConfirmation(false);
+  };
+
+  const cancelEmptyCart = () => {
+    setShowConfirmation(false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    AOS.refresh(); // Refresh AOS after scrolling to the top
+  };
+
+  useEffect(() => {
+    if (showConfirmation) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showConfirmation]);
+
+  // Initialize AOS on component mount
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Duration of animations
+      once: true,     // Whether animation should happen only once
+    });
+  }, []);
+
   return (
-    <div className="bg-gray-50 py-12 px-6">
+    <div className="bg-gray-50 py-12 px-6" data-aos="fade-up">
       <div className="text-left mb-8">
         <h3 className="text-green-600 font-semibold text-lg">MY CART</h3>
         <h2 className="text-4xl font-bold text-gray-900">Selected Products</h2>
@@ -52,7 +78,7 @@ function ShopCart() {
       <div className="grid md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
           {cartItems.map((item) => (
-            <div key={item.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4">
+            <div key={item.id} className="flex items-center justify-between bg-white p-4 rounded-lg shadow-md mb-4" data-aos="fade-up">
               <div className="flex items-center">
                 <img src={item.image} alt={item.name} className="w-20 h-20 rounded-lg" />
                 <div className="ml-4">
@@ -100,7 +126,7 @@ function ShopCart() {
             EMPTY CART
           </button>
         </div>
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white p-6 rounded-lg shadow-md" data-aos="fade-up">
           <h3 className="text-xl font-semibold text-gray-900">CART TOTALS</h3>
           <div className="mt-4">
             <div className="flex justify-between text-gray-600 mb-2">
@@ -125,6 +151,30 @@ function ShopCart() {
           </div>
         </div>
       </div>
+
+      {/* Confirmation Modal */}
+      {showConfirmation && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50" data-aos="fade-in">
+          <div className="bg-white p-8 rounded-lg shadow-lg relative">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">Confirm Empty Cart</h3>
+            <p className="text-gray-700 mb-6">Are you sure you want to empty the cart? This action cannot be undone.</p>
+            <div className="flex justify-end">
+              <button
+                className="bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 mr-4"
+                onClick={confirmEmptyCart}
+              >
+                Yes, Empty Cart
+              </button>
+              <button
+                className="bg-gray-300 text-gray-700 py-2 px-4 rounded-lg hover:bg-gray-400"
+                onClick={cancelEmptyCart}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
