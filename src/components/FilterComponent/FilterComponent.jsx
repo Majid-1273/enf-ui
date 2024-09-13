@@ -64,6 +64,9 @@ export default function FilterComponent() {
 
   return (
     <div className="w-72 bg-white shadow-lg rounded-lg p-4" data-aos="fade-up">
+      {/* Filter Heading */}
+      <h2 className="text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">Filter</h2>
+
       {filterData.map((section, index) => (
         <div key={index} className="border-b py-2" data-aos="fade-up" data-aos-delay={index * 100}>
           <button
@@ -102,5 +105,3 @@ export default function FilterComponent() {
     </div>
   );
 }
-
-

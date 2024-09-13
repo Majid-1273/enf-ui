@@ -12,7 +12,7 @@ const Footer = () => {
   useEffect(() => {
     AOS.init({
       duration: 1000, // Set the animation duration
-      once: true, // Ensure animations run only once when scrolled into view
+       // Ensure animations run only once when scrolled into view
     });
   }, []);
 
@@ -57,7 +57,7 @@ const Footer = () => {
         <li>Business News</li>
         <li>Featured Products</li>
       </ul>
-      <div className="rights" data-aos="fade-up" data-aos-delay="600">
+      <div className="rights " data-aos-delay="600">
         All rights reserved | Terms & Conditions
       </div>
     </div>

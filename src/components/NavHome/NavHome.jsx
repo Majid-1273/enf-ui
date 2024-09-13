@@ -33,11 +33,11 @@ const NavHome = (props) => {
                 data-aos="fade-down" // AOS fade-down for the contact navigation
                 data-aos-delay="100" // Delay for staggered effect
             >
-                <div className="custom-social-icons">
-                    <FaInstagram size={25} className="custom-insta-logo" />
-                    <FaLinkedinIn size={25} className="custom-linkedin-logo" />
-                    <FaXTwitter size={25} className="custom-twitter-logo" />
-                    <FaFacebookF size={25} className="custom-facebook-logo" />
+                <div className="custom-social-icons ">
+                    <FaInstagram size={25} className="custom-insta-logo hover:text-green-500" />
+                    <FaLinkedinIn size={25} className="custom-linkedin-logo hover:text-green-500" />
+                    <FaXTwitter size={25} className="custom-twitter-logo hover:text-green-500" />
+                    <FaFacebookF size={25} className="custom-facebook-logo hover:text-green-500" />
                 </div>
                 <div className="custom-contact">
                     +1 248 248 2481<FaPhone className="custom-phone-logo" />
@@ -67,12 +67,12 @@ const NavHome = (props) => {
                         <Link to="/about" className="custom-nav-links custom-simple-links" onClick={handleClick}>About Us</Link>
                     </li>
                     <li>
-                        <Link to="/cart" className="custom-nav-links custom-cart-nav" onClick={handleClick}>
+                        <Link to="/cart" className="custom-nav-links custom-cart-nav hover:text-green-500" onClick={handleClick}>
                             <MdOutlineShoppingCart />
                         </Link>
                     </li>
                     <li>
-                        <Link to="/contact" className="custom-nav-links custom-contactus-nav" onClick={handleClick}>Contact Us</Link>
+                        <Link to="/contact" className="custom-nav-links custom-contactus-nav hover:text-green-500" onClick={handleClick}>Contact Us</Link>
                     </li>
                 </ul>
                 <div className="custom-hamburger" onClick={handleClick}>

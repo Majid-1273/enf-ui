@@ -13,6 +13,12 @@ function TabNavigation({ selectedTab, setSelectedTab }) {
     });
   }, []);
 
+  // Scroll up by 0.5 cm when changing the tab
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
+    window.scrollBy({ top: -0.02 * 37.7953, behavior: 'smooth' });  // Scroll up by 0.5 cm (37.7953 pixels)
+  };
+
   return (
     <div 
       className="flex items-center justify-between border-b-2 border-gray-200 py-2 md:py-4 px-4 md:px-6"
@@ -25,7 +31,7 @@ function TabNavigation({ selectedTab, setSelectedTab }) {
               ? "text-green-700 border-b-4 border-green-700"
               : "text-gray-400 hover:text-gray-600"
           }`}
-          onClick={() => setSelectedTab("Product")}
+          onClick={() => handleTabClick("Product")}
           data-aos="fade-right"  // AOS animation for Product tab
         >
           Product Directory
@@ -36,7 +42,7 @@ function TabNavigation({ selectedTab, setSelectedTab }) {
               ? "text-green-700 border-b-4 border-green-700"
               : "text-gray-400 hover:text-gray-600"
           }`}
-          onClick={() => setSelectedTab("Company")}
+          onClick={() => handleTabClick("Company")}
           data-aos="fade-left"  // AOS animation for Company tab
         >
           Company Directory

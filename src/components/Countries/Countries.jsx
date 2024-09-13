@@ -2,20 +2,16 @@ import { useEffect, useState } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-// Sample data for the flags and countries
+// Sample data with continent field for each flag
 const flags = [
-  { id: 1, country: 'Albania', imgSrc: 'path_to_flag_image' },
-  { id: 2, country: 'Azerbaijan', imgSrc: 'path_to_flag_image' },
-  { id: 3, country: 'Andorra', imgSrc: 'path_to_flag_image' },
-  { id: 4, country: 'Belarus', imgSrc: 'path_to_flag_image' },
-  { id: 5, country: 'Armenia', imgSrc: 'path_to_flag_image' },
-  { id: 6, country: 'Austria', imgSrc: 'path_to_flag_image' },
-  { id: 1, country: 'Albania', imgSrc: 'path_to_flag_image' },
-  { id: 2, country: 'Azerbaijan', imgSrc: 'path_to_flag_image' },
-  { id: 3, country: 'Andorra', imgSrc: 'path_to_flag_image' },
-  { id: 4, country: 'Belarus', imgSrc: 'path_to_flag_image' },
-  { id: 5, country: 'Armenia', imgSrc: 'path_to_flag_image' },
-  { id: 6, country: 'Austria', imgSrc: 'path_to_flag_image' },
+  { id: 1, country: 'Albania', continent: 'Europe', imgSrc: 'path_to_flag_image' },
+  { id: 2, country: 'Azerbaijan', continent: 'Asia', imgSrc: 'path_to_flag_image' },
+  { id: 3, country: 'Andorra', continent: 'Europe', imgSrc: 'path_to_flag_image' },
+  { id: 4, country: 'Belarus', continent: 'Europe', imgSrc: 'path_to_flag_image' },
+  { id: 5, country: 'Armenia', continent: 'Asia', imgSrc: 'path_to_flag_image' },
+  { id: 6, country: 'Austria', continent: 'Europe', imgSrc: 'path_to_flag_image' },
+  { id: 7, country: 'Brazil', continent: 'Americas', imgSrc: 'path_to_flag_image' },
+  { id: 8, country: 'Canada', continent: 'Americas', imgSrc: 'path_to_flag_image' },
   // Add more countries and flags here
 ];
 
@@ -33,7 +29,7 @@ const ArrowButton = ({ direction = 'right', onClick }) => {
   );
 };
 
-const Countires = () => {
+const Countries = () => {
   const [selectedTab, setSelectedTab] = useState('Europe');
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -41,10 +37,12 @@ const Countires = () => {
     AOS.init({ duration: 1000 });
   }, []);
 
+  // Filter the flags based on the selected tab
+  const filteredFlags = flags.filter((flag) => flag.continent === selectedTab);
+
   const handleNext = () => {
-    // Adjust to show 12 flags on larger screens and 6 on smaller screens
     const increment = window.innerWidth >= 1024 ? 12 : 6;
-    if (currentIndex < flags.length - increment) {
+    if (currentIndex < filteredFlags.length - increment) {
       setCurrentIndex(currentIndex + increment);
     }
   };
@@ -56,27 +54,34 @@ const Countires = () => {
     }
   };
 
+  // Scroll up by 0.5 cm when changing the tab
+  const handleTabClick = (tab) => {
+    setSelectedTab(tab);
+    setCurrentIndex(0); // Reset index when switching tab
+    window.scrollBy({ top: -0.01 * 37.7953, behavior: 'smooth' }); // Scroll up by 0.5 cm (37.7953 pixels)
+  };
+
   return (
     <div className="max-w-full mx-auto py-4 px-4 md:py-8 md:px-20">
       <div className="flex flex-col md:flex-row justify-between items-center mb-4 text-lg md:text-2xl">
         <div className="flex space-x-4 mb-4 md:mb-0">
           <button
             className={`px-2 py-1 md:px-4 md:py-2 ${selectedTab === 'Europe' ? 'text-green-950 border-b-2 border-green-600' : 'text-gray-500'} focus:outline-none`}
-            onClick={() => setSelectedTab('Europe')}
+            onClick={() => handleTabClick('Europe')}
             data-aos="fade-down"
           >
             Europe
           </button>
           <button
             className={`px-2 py-1 md:px-4 md:py-2 ${selectedTab === 'Asia' ? 'text-green-950 border-b-2 border-green-600' : 'text-gray-500'} focus:outline-none`}
-            onClick={() => setSelectedTab('Asia')}
+            onClick={() => handleTabClick('Asia')}
             data-aos="fade-down"
           >
             Asia
           </button>
           <button
             className={`px-2 py-1 md:px-4 md:py-2 ${selectedTab === 'Americas' ? 'text-green-950 border-b-2 border-green-600' : 'text-gray-500'} focus:outline-none`}
-            onClick={() => setSelectedTab('Americas')}
+            onClick={() => handleTabClick('Americas')}
             data-aos="fade-down"
           >
             Americas
@@ -94,7 +99,7 @@ const Countires = () => {
         <div className="flex items-center justify-between">
           <ArrowButton direction="left" onClick={handlePrev} />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {flags.slice(currentIndex, currentIndex + 12).map((flag) => (
+            {filteredFlags.slice(currentIndex, currentIndex + 12).map((flag) => (
               <div key={flag.id} className="text-center" data-aos="fade-up">
                 <img
                   src={flag.imgSrc}
@@ -112,4 +117,4 @@ const Countires = () => {
   );
 };
 
-export default Countires;
+export default Countries;

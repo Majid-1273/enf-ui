@@ -42,7 +42,13 @@ function Home() {
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
-    // Add more products
+    {
+      image: dummyImage,
+      name: "Majid Chonga",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+
   ];
 
   const companies = products; // Reuse the products array for companies
@@ -125,7 +131,6 @@ function Home() {
         currentIndex={currentIndex}
         handlePrevClick={handlePrevClick}
         handleNextClick={handleNextClick}
-         // AOS attribute for fade-in animation
       />
 
       {/* Tab Navigation */}
