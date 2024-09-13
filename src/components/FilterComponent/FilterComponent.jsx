@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
 
 export default function FilterComponent() {
   const [openSections, setOpenSections] = useState({});
@@ -52,10 +54,18 @@ export default function FilterComponent() {
     }));
   };
 
+  // Initialize AOS on component mount
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Set the animation duration
+      once: true, // Ensure animations run only once when scrolled into view
+    });
+  }, []);
+
   return (
-    <div className="w-72 bg-white shadow-lg rounded-lg p-4">
+    <div className="w-72 bg-white shadow-lg rounded-lg p-4" data-aos="fade-up">
       {filterData.map((section, index) => (
-        <div key={index} className="border-b py-2">
+        <div key={index} className="border-b py-2" data-aos="fade-up" data-aos-delay={index * 100}>
           <button
             className="flex justify-between items-center w-full text-gray-900 font-medium text-left"
             onClick={() => toggleSection(index)}
@@ -64,7 +74,7 @@ export default function FilterComponent() {
             <span>{openSections[index] ? '-' : '+'}</span>
           </button>
           {openSections[index] && (
-            <ul className="mt-2 space-y-1">
+            <ul className="mt-2 space-y-1" data-aos="fade-up" data-aos-delay={(index + 1) * 100}>
               {section.options.map((option, optionIndex) => (
                 <li
                   key={optionIndex}
@@ -79,7 +89,7 @@ export default function FilterComponent() {
         </div>
       ))}
 
-      <div className="mt-4 border-t pt-4">
+      <div className="mt-4 border-t pt-4" data-aos="fade-up" data-aos-delay={(filterData.length + 1) * 100}>
         <h3 className="text-gray-900 font-medium">Related Directories</h3>
         <ul className="mt-2 space-y-2">
           {relatedDirectories.map((item, index) => (
@@ -92,3 +102,5 @@ export default function FilterComponent() {
     </div>
   );
 }
+
+

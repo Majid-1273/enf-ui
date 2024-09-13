@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight, FaTag, FaCalendarAlt } from 'react-icons/fa';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const newsData = [
   {
@@ -28,6 +30,15 @@ const newsData = [
 function BusinessNews() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Initialize AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+    });
+  }, []);
+
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === 0 ? newsData.length - 1 : prevIndex - 1));
   };
@@ -37,7 +48,7 @@ function BusinessNews() {
   };
 
   return (
-    <div className="bg-white py-12 px-6">
+    <div className="bg-white py-12 px-6" data-aos="fade-up">
       <div className="text-center mb-8">
         <h3 className="text-green-600 font-semibold text-lg">SOLAR PV</h3>
         <h2 className="text-4xl font-bold text-gray-900">Business News</h2>
@@ -61,6 +72,8 @@ function BusinessNews() {
               <div
                 key={index}
                 className="flex-shrink-0 w-full sm:w-1/3"
+                data-aos="fade-up" // AOS fade-up for each card
+                data-aos-delay={`${index * 100}`} // Stagger animation
               >
                 <div className="bg-white shadow-lg rounded-lg overflow-hidden">
                   <img

@@ -1,10 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import AOS from 'aos'; // Import AOS
+import 'aos/dist/aos.css'; // Import AOS styles
 import Img from "../../assets/images/localDistributorsImg.png";
 import { Link } from 'react-router-dom';
 
 const SolarPanelCard = () => {
+  // Initialize AOS on component mount
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Set the animation duration
+      once: true, // Ensure animations run only once when scrolled into view
+    });
+  }, []);
+
   return (
-    <div className="flex flex-col md:flex-row items-center bg-white rounded-lg overflow-hidden p-8 md:px-20 md:py-12">
+    <div 
+      className="flex flex-col md:flex-row items-center bg-white rounded-lg overflow-hidden p-8 md:px-20 md:py-12" 
+      data-aos="fade-up"
+    >
       <div className="md:w-1/2 md:pr-8 mb-8 md:mb-0">
         <p className="text-[#89EA5F] text-xs md:text-sm lg:text-base font-semibold mb-2">SOLAR PANELS</p>
         <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2">Local Distributors</h2>
@@ -17,11 +30,10 @@ const SolarPanelCard = () => {
           </button>
         </Link>
       </div>
-      <div className="w-full md:w-1/2">
+      <div className="w-full md:w-1/2" data-aos="zoom-in">
         <img src={Img} alt="Solar Panels" className="w-full h-auto object-cover rounded-r-lg md:rounded-none" />
       </div>
     </div>
-    
   );
 };
 

@@ -1,3 +1,6 @@
+import React, { useEffect } from 'react';
+import AOS from 'aos'; // Import AOS for animations
+import 'aos/dist/aos.css'; // Import AOS styles
 
 function Testimonials() {
   const testimonials = [
@@ -7,18 +10,31 @@ function Testimonials() {
       feedback: 'Sed ut perspiciatis unde omnis istejksa natus error sit voluptatem accusantium doloremque laudantium, totam rescmoi aperiam, eaque ipsa quae ab illo dfgtgyu inventore veritatis et quasi architectsao beatae vitae.',
       stars: 5,
     },
-
   ];
+
+  // Initialize AOS animations
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Animation duration
+      easing: 'ease-in-out',
+      once: true, // Animation happens only once
+    });
+  }, []);
 
   return (
     <div className="bg-gray-50 py-12 px-6">
-      <div className="text-center mb-8">
+      <div className="text-center mb-8" data-aos="fade-up">
         <h3 className="text-green-600 font-semibold text-lg">TESTIMONIALS</h3>
         <h2 className="text-4xl font-bold text-gray-900">Words From Our Customer</h2>
       </div>
       <div className="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0">
         {testimonials.map((testimonial, index) => (
-          <div key={index} className="bg-white rounded-xl p-6 shadow-md w-full md:w-1/3 mx-4">
+          <div
+            key={index}
+            className="bg-white rounded-xl p-6 shadow-md w-full md:w-1/3 mx-4"
+            data-aos="fade-up"
+            data-aos-delay={`${index * 200}`} // Stagger animation for each testimonial
+          >
             <div className="flex flex-col items-center">
               <div className="relative">
                 <img

@@ -31,6 +31,11 @@ body, html {
     font-size: 1.5rem;
 }
 
+.custom-insta-logo:hover, .custom-facebook-logo:hover, .custom-twitter-logo:hover, .custom-linkedin-logo:hover {
+    background-color: black;
+
+}
+
 .custom-email-logo {
     color: #89EA5F;
     margin-left: 0.5rem;
@@ -77,9 +82,7 @@ body, html {
     font-family: sans-serif;
 }
 
-.custom-simple-links:hover {
-    color: red;
-}
+
 
 .custom-logo-nav {
     display: flex;
@@ -106,6 +109,10 @@ body, html {
     border-radius: 3rem;
     font-size: 2rem;
     background-color: #89EA5F;
+}
+
+.custom-cart-nav:hover {
+    background-color: black;
 }
 
 .custom-hamburger {

@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import AOS from "aos";  // Import AOS
+import "aos/dist/aos.css";  // Import the AOS CSS
+
 import NavHome from "../components/NavHome/NavHome";
-import ProductCard from "../components/ProductCard/ProductCard";
-import ProductDirectory from "../components/ProductDirectory/ProductDirectory";
+import FeaturedProductCarousel from "../components/FeaturedProductCarousel/FeaturedProductCarousel";
+import TabNavigation from "../components/TabNavigation/TabNavigation";
+import DirectorySection from "../components/DirectorySection/DirectorySection";
 import BusinessNews from "../components/BusinessNews/BusinessNews";
-import SolarPricingSection from "../components/SolarPricingSection/SolarPricingSection";
 import dummyImage from "../assets/images/featuredHomeImg2.png";
+import PanelDeals from '../components/PanelDeals/PanelDeals';
 import headerImage from '../assets/images/headerImgAll.png';
 
 function Home() {
@@ -23,32 +26,26 @@ function Home() {
     },
     {
       image: dummyImage,
-      name: "BiMAX 6N SP695-715M-66H",
-      category: "Solar inverter",
+      name: "Special Majid",
+      category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
     {
       image: dummyImage,
-      name: "BiMAX ",
-      category: "Solar inverter",
+      name: "Majid Madra",
+      category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
     {
       image: dummyImage,
-      name: "BiMAX 6N SP695-715M-66H",
-      category: "Solar inverter",
+      name: "Majid Chonga",
+      category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
-    {
-      image: dummyImage,
-      name: "BiMAX 6N SP695-715M-66H",
-      category: "Solar inverter",
-      manufacturer: "Shinefar Sola",
-    },
-    // Add more products as needed
+    // Add more products
   ];
 
-  const companies = products;
+  const companies = products; // Reuse the products array for companies
 
   const updateProductsToShow = () => {
     if (window.innerWidth < 640) {
@@ -71,6 +68,13 @@ function Home() {
   };
 
   useEffect(() => {
+    AOS.init({
+      duration: 1200,  // Increased duration for smoother appearance
+      easing: 'ease-in-out',  // Easing for smoother animations
+      once: true,  // Only animate once
+      offset: 120,  // Delay animation until component is 120px into view
+    });
+
     updateProductsToShow();
     updateDirectoryToShow();
     window.addEventListener("resize", updateProductsToShow);
@@ -94,9 +98,14 @@ function Home() {
   };
 
   return (
-    <div>
-      <NavHome />
-      <div className="text-left text-white lg:pl-36 lg:pt-28 lg:pb-24 md:pl-24 md:pt-20 md:pb-16 pl-8 pt-12 pb-10">
+    <div> {/* Prevent horizontal scroll */}
+      <NavHome bgImage={headerImage} />
+
+      {/* Featured Product Section */}
+      <div
+        className="text-left text-white lg:pl-36 lg:pt-28 md:pl-24 md:pt-20 pl-8 pt-12 "
+        data-aos="fade-up" // AOS attribute for fade-up animation
+      >
         <div className="flex items-center justify-between">
           <p className="text-lg md:text-xl lg:text-2xl font-medium mb-2 text-green-500">
             RECENT ARTICLES
@@ -109,88 +118,30 @@ function Home() {
           Featured Product
         </p>
       </div>
-      <div className="relative p-4 lg:p-8">
-        <div className="absolute left-0 top-1/2 transform -translate-y-1/2">
-          <button
-            onClick={handlePrevClick}
-            className="absolute left-0 bg-white border border-gray-300 p-2 rounded-full shadow-md transform -translate-y-1/2 top-1/2"
-          >
-            <FaChevronLeft className="text-green-600" />
-          </button>
-        </div>
-        <div className="absolute right-0 top-1/2 transform -translate-y-1/2">
-          <button
-            onClick={handleNextClick}
-            className="absolute right-0 bg-white border border-gray-300 p-2 rounded-full shadow-md transform -translate-y-1/2 top-1/2"
-          >
-            <FaChevronRight className="text-green-600" />
-          </button>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
-          {products
-            .slice(currentIndex, currentIndex + productsToShow)
-            .map((product, index) => (
-              <ProductCard
-                key={index}
-                image={product.image}
-                name={product.name}
-                category={product.category}
-                manufacturer={product.manufacturer}
-              />
-            ))}
-        </div>
-      </div>
 
-      <div className="flex items-center justify-between border-b-2 border-gray-200 py-2 md:py-4 px-4 md:px-6">
-        <div className="flex space-x-4 md:space-x-8">
-          <p
-            className={`text-lg md:text-xl lg:text-2xl font-medium cursor-pointer ${
-              selectedTab === "Product"
-                ? "text-green-700 border-b-4 border-green-700"
-                : "text-gray-400"
-            }`}
-            onClick={() => setSelectedTab("Product")}
-          >
-            Product Directory
-          </p>
-          <p
-            className={`text-lg md:text-xl lg:text-2xl font-medium cursor-pointer ${
-              selectedTab === "Company"
-                ? "text-green-700 border-b-4 border-green-700"
-                : "text-gray-400"
-            }`}
-            onClick={() => setSelectedTab("Company")}
-          >
-            Company Directory
-          </p>
-        </div>
-      </div>
+      <FeaturedProductCarousel
+        products={products}
+        productsToShow={productsToShow}
+        currentIndex={currentIndex}
+        handlePrevClick={handlePrevClick}
+        handleNextClick={handleNextClick}
+         // AOS attribute for fade-in animation
+      />
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-8 py-4 md:py-6 lg:py-8">
-        {selectedTab === "Product"
-          ? products
-              .slice(currentIndex, currentIndex + directoryToShow)
-              .map((product, index) => (
-                <ProductDirectory
-                  key={index}
-                  image={product.image}
-                  name={product.name}
-                />
-              ))
-          : companies
-              .slice(currentIndex, currentIndex + directoryToShow)
-              .map((company, index) => (
-                <ProductDirectory
-                  key={index}
-                  image={company.image}
-                  name={company.name}
-                />
-              ))}
-      </div>
+      {/* Tab Navigation */}
+      <TabNavigation selectedTab={selectedTab} setSelectedTab={setSelectedTab}/>
+
+      {/* Directory Section */}
+      <DirectorySection
+        selectedTab={selectedTab}
+        items={selectedTab === "Product" ? products : companies}
+        currentIndex={currentIndex}
+        directoryToShow={directoryToShow}
+       
+      />
 
       <BusinessNews />
-      <SolarPricingSection />
-
+      <PanelDeals />
     </div>
   );
 }

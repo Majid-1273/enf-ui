@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 // Sample data for the flags and countries
 const flags = [
@@ -22,6 +24,7 @@ const ArrowButton = ({ direction = 'right', onClick }) => {
     <button
       onClick={onClick}
       className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-gray-400 rounded-full hover:bg-gray-200 focus:outline-none"
+      data-aos="fade"
     >
       <span className={`text-green-900 text-lg ${direction === 'left' ? 'rotate-180' : ''}`}>
         &gt;
@@ -33,6 +36,10 @@ const ArrowButton = ({ direction = 'right', onClick }) => {
 const Countires = () => {
   const [selectedTab, setSelectedTab] = useState('Europe');
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
 
   const handleNext = () => {
     // Adjust to show 12 flags on larger screens and 6 on smaller screens
@@ -56,18 +63,21 @@ const Countires = () => {
           <button
             className={`px-2 py-1 md:px-4 md:py-2 ${selectedTab === 'Europe' ? 'text-green-950 border-b-2 border-green-600' : 'text-gray-500'} focus:outline-none`}
             onClick={() => setSelectedTab('Europe')}
+            data-aos="fade-down"
           >
             Europe
           </button>
           <button
             className={`px-2 py-1 md:px-4 md:py-2 ${selectedTab === 'Asia' ? 'text-green-950 border-b-2 border-green-600' : 'text-gray-500'} focus:outline-none`}
             onClick={() => setSelectedTab('Asia')}
+            data-aos="fade-down"
           >
             Asia
           </button>
           <button
             className={`px-2 py-1 md:px-4 md:py-2 ${selectedTab === 'Americas' ? 'text-green-950 border-b-2 border-green-600' : 'text-gray-500'} focus:outline-none`}
             onClick={() => setSelectedTab('Americas')}
+            data-aos="fade-down"
           >
             Americas
           </button>
@@ -76,6 +86,7 @@ const Countires = () => {
           type="text"
           placeholder="Search here"
           className="px-2 py-1 md:px-4 md:py-2 border rounded-full focus:outline-none text-sm md:text-base"
+          data-aos="fade-left"
         />
       </div>
 
@@ -83,8 +94,8 @@ const Countires = () => {
         <div className="flex items-center justify-between">
           <ArrowButton direction="left" onClick={handlePrev} />
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
-            {flags.slice(currentIndex, currentIndex + 12).map((flag, index) => (
-              <div key={flag.id} className="text-center">
+            {flags.slice(currentIndex, currentIndex + 12).map((flag) => (
+              <div key={flag.id} className="text-center" data-aos="fade-up">
                 <img
                   src={flag.imgSrc}
                   alt={`${flag.country} flag`}

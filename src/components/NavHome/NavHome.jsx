@@ -1,21 +1,38 @@
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { MdEmail } from "react-icons/md";
 import { FaPhone, FaBars, FaTimes, FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
-import { useState } from "react";
 import { FaXTwitter } from "react-icons/fa6";
 import Logo from "../../assets/images/logoGreen.png";
-import "./navhome.css"
+import "./navhome.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NavHome = (props) => {
-    const { bgImage} = props;
+    const { bgImage } = props;
     const [click, setClick] = useState(false);
     const handleClick = () => setClick(!click);
 
+    useEffect(() => {
+        AOS.init({
+            duration: 800, // Animation duration
+            easing: "ease-in-out", // Easing function
+            once: true, // Only animate once
+        });
+    }, []);
+
     return (
-        
-        <div className="custom-navh" style={{ backgroundImage: `url(${bgImage})` }}>
-            <div className="custom-contact-nav">
+        <div 
+            className="custom-navh" 
+            style={{ backgroundImage: `url(${bgImage})` }}
+            data-aos="fade" // AOS fade animation for the main container
+        >
+            <div 
+                className="custom-contact-nav"
+                data-aos="fade-down" // AOS fade-down for the contact navigation
+                data-aos-delay="100" // Delay for staggered effect
+            >
                 <div className="custom-social-icons">
                     <FaInstagram size={25} className="custom-insta-logo" />
                     <FaLinkedinIn size={25} className="custom-linkedin-logo" />
@@ -27,7 +44,11 @@ const NavHome = (props) => {
                     info@domain.com<MdEmail className="custom-email-logo" />
                 </div>
             </div>
-            <div className="custom-navbar">
+            <div 
+                className="custom-navbar"
+                data-aos="fade-down" // AOS fade-down for the navbar
+                data-aos-delay="200" // Delay for staggered effect
+            >
                 <Link to="/" className="custom-nav-links custom-logo-nav">
                     <img src={Logo} alt="" className="custom-logo-green" />
                     <p className="custom-company-name">ILLUSION</p>
@@ -58,7 +79,11 @@ const NavHome = (props) => {
                     {click ? <FaTimes style={{ color: "#000000" }} /> : <FaBars style={{ color: "#000000" }} />}
                 </div>
             </div>
-            <div className="text-left text-white lg:pl-0 lg:pt-20 lg:pb-20 md:pt-20 md:pb-20 pl-12 pt-16 pb-16">
+            <div 
+                className="text-left text-white lg:pl-0 lg:pt-20 lg:pb-20 md:pt-20 md:pb-20 pl-12 pt-16 pb-16"
+                data-aos="fade-up" // AOS fade-up for the text content
+                data-aos-delay="300" // Delay for staggered effect
+            >
                 <p className="text-sm md:text-lg lg:text-xl font-medium mb-2 text-green-500">Welcome to ILLUSION</p>
                 <p className="text-2xl md:text-3xl lg:text-5xl font-bold mb-2">Powering The Future</p>
                 <p className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 text-green-500">With Illusion Solar</p>
@@ -73,9 +98,7 @@ const NavHome = (props) => {
                     <button className="border border-green-500 text-green-500 py-3 px-5 rounded-full hover:bg-green-500 hover:text-white">About Us</button>
                 </div>
             </div>
-
         </div>
-        
     );
 }
 
