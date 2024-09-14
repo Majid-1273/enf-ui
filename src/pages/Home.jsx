@@ -48,10 +48,48 @@ function Home() {
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
-
   ];
 
-  const companies = products; // Reuse the products array for companies
+  const directory_products = [
+    {
+      image: dummyImage,
+      name: "asd",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+    {
+      image: dummyImage,
+      name: "asd sd",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+    {
+      image: dummyImage,
+      name: "asdasda asdasdas",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+    {
+      image: dummyImage,
+      name: "asd Choasdasdnga",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+    {
+      image: dummyImage,
+      name: "Majasdasdasid Chasdasdonga",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+    {
+      image: dummyImage,
+      name: "Majasdasdasid Chasdasdonga",
+      category: "Solar panel",
+      manufacturer: "Shinefar Sola",
+    },
+  ];
+
+  const companies = directory_products; // Reuse the products array for companies
 
   const updateProductsToShow = () => {
     if (window.innerWidth < 640) {
@@ -63,14 +101,9 @@ function Home() {
     }
   };
 
+  // Make sure updateDirectoryToShow is defined before useEffect
   const updateDirectoryToShow = () => {
-    if (window.innerWidth < 640) {
-      setDirectoryToShow(2);
-    } else if (window.innerWidth < 1024) {
-      setDirectoryToShow(4);
-    } else {
-      setDirectoryToShow(6);
-    }
+    setDirectoryToShow(6);
   };
 
   useEffect(() => {
@@ -139,10 +172,8 @@ function Home() {
       {/* Directory Section */}
       <DirectorySection
         selectedTab={selectedTab}
-        items={selectedTab === "Product" ? products : companies}
-        currentIndex={currentIndex}
+        items={selectedTab === "Product" ? directory_products : companies}
         directoryToShow={directoryToShow}
-       
       />
 
       <BusinessNews />

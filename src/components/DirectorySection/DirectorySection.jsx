@@ -3,7 +3,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import ProductDirectory from "../ProductDirectory/ProductDirectory";
 
-function DirectorySection({ selectedTab, items, currentIndex, directoryToShow }) {
+function DirectorySection({ selectedTab, items,  directoryToShow }) {
   
   // Initialize AOS
   useEffect(() => {
@@ -16,10 +16,10 @@ function DirectorySection({ selectedTab, items, currentIndex, directoryToShow })
 
   return (
     <div 
-      className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-12 py-4 md:py-6 lg:py-8"
+      className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-6 lg:gap-8 px-4 md:px-6 lg:px-12 py-4 md:py-6 lg:py-8"
     >
       {items
-        .slice(currentIndex, currentIndex + directoryToShow)
+        .slice(0, directoryToShow)
         .map((item, index) => (
           <div 
             key={index} 

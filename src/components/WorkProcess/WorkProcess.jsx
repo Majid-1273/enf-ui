@@ -19,9 +19,9 @@ function WorkProcess() {
         <h3 className="text-green-600 font-semibold text-lg">OUR LATEST PROCESS</h3>
         <h2 className="text-4xl font-bold text-gray-900">Our Work Process</h2>
       </div>
-      <div className="flex flex-col md:flex-row justify-around items-center space-y-8 md:space-y-0">
+      <div className="flex flex-col md:flex-row md:gap-5 justify-around items-center space-y-8 md:space-y-0">
 
-        <div className="relative text-center" data-aos="fade-up" data-aos-delay="100">
+        <div className="relative text-center " data-aos="fade-up" data-aos-delay="100">
           <div className="flex justify-center items-center bg-green-400 p-6 rounded-xl text-white mx-auto">
             <FaPencilAlt className="text-5xl mb-4" />
           </div>
