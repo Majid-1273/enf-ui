@@ -15,11 +15,11 @@ function AboutUs() {
   }, []);
 
   return (
-    <div className="flex flex-col md:flex-row items-center bg-white p-6 md:p-12 space-y-8 md:space-y-0">
+    <div className="flex flex-col lg:flex-row items-center bg-white p-6 md:p-12 space-y-8 md:space-y-0">
       <div className="md:w-1/2 space-y-6" data-aos="fade-right">
         <h3 className="text-green-600 font-semibold text-xl">ABOUT US</h3>
         <h2 className="text-5xl font-bold text-gray-900">About ENF</h2>
-        <p className="text-gray-600 text-lg w-10/12">
+        <p className="text-gray-600 text-lg w-full lg:w-5/6">
           We are the top source of photovoltaic information connecting solar suppliers and customers. 
           With more than 19 years of experience researching the solar industry, our strong focus on data quality 
           offers unparalleled depth. Our site provides scale, features, and quality that connects more than 5,000,000 

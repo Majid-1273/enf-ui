@@ -26,7 +26,7 @@ function TabNavigation({ selectedTab, setSelectedTab }) {
     >
       <div className="flex space-x-4 md:space-x-8">
         <p
-          className={`text-lg md:text-xl lg:text-2xl font-medium cursor-pointer transition-colors duration-300 ${
+          className={`text-lg md:text-xl lg:text-2xl font-medium cursor-pointer transition-colors duration-300 sm:ml-4 md:ml-16 lg:ml-32 ${
             selectedTab === "Product"
               ? "text-green-700 border-b-4 border-green-700"
               : "text-gray-400 hover:text-gray-600"

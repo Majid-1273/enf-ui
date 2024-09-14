@@ -17,20 +17,22 @@ function FeaturedProductCarousel({ products, productsToShow, currentIndex, handl
   return (
     <div className="relative p-4 lg:p-8">
       {/* Previous Button */}
-      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
+      <div className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10">
         <button
           onClick={handlePrevClick}
           className="bg-white border border-gray-300 p-2 rounded-full shadow-md"
+          style={{ width: "40px", height: "40px" }} // Ensure size is adequate for mobile
         >
           <FaChevronLeft className="text-green-600" />
         </button>
       </div>
 
       {/* Next Button */}
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+      <div className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10">
         <button
           onClick={handleNextClick}
           className="bg-white border border-gray-300 p-2 rounded-full shadow-md"
+          style={{ width: "40px", height: "40px" }} // Ensure size is adequate for mobile
         >
           <FaChevronRight className="text-green-600" />
         </button>
@@ -43,8 +45,8 @@ function FeaturedProductCarousel({ products, productsToShow, currentIndex, handl
           .map((product, index) => (
             <div
               key={index}
-              data-aos="fade-up"    // Apply fade-up animation to each product card
-              data-aos-delay={`${index * 200}`}  // Add delay for each card for staggered effect
+              data-aos="fade-up"    
+              data-aos-delay={`${index * 200}`} 
             >
               <ProductCard
                 image={product.image}
