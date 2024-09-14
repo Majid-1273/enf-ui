@@ -47,13 +47,28 @@ function BusinessNews() {
     setCurrentIndex((prevIndex) => (prevIndex === newsData.length - 1 ? 0 : prevIndex + 1));
   };
 
+  // Define number of visible cards based on screen size
+  const getVisibleCards = () => {
+    if (window.innerWidth >= 1024) {
+      return 3; // Monitor screens
+    } else if (window.innerWidth >= 768) {
+      return 2; // Tablets
+    } else {
+      return 1; // Mobile screens
+    }
+  };
+
+  const visibleCards = getVisibleCards();
+
   return (
     <div className="bg-white py-12 px-6" data-aos="fade-up">
       <div className="text-center mb-8">
         <h3 className="text-green-600 font-semibold text-lg">SOLAR PV</h3>
         <h2 className="text-4xl font-bold text-gray-900">Business News</h2>
       </div>
-      <div className="relative">
+
+      {/* Container holding buttons and cards */}
+      <div className="relative flex justify-center items-center">
         {/* Left Arrow */}
         <button
           onClick={handlePrev}
@@ -63,19 +78,19 @@ function BusinessNews() {
         </button>
 
         {/* News Cards */}
-        <div className="overflow-hidden">
+        <div className="overflow-hidden w-full sm:w-2/3 lg:w-3/4">
           <div
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+            className="flex transition-transform duration-500 ease-in-out gap-4 md:gap-6 lg:gap-8"
+            style={{ transform: `translateX(-${(currentIndex % (newsData.length / visibleCards)) * (100 / visibleCards)}%)` }}
           >
             {newsData.map((news, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-full sm:w-1/3"
-                data-aos="fade-up" // AOS fade-up for each card
-                data-aos-delay={`${index * 100}`} // Stagger animation
+                className={`flex-shrink-0 w-full ${visibleCards === 1 ? "sm:w-full" : visibleCards === 2 ? "sm:w-1/2" : "lg:w-1/3"}`}
+                data-aos="fade-up"
+                data-aos-delay={`${index * 100}`}
               >
-                <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+                <div className="bg-slate-100 shadow-lg rounded-lg overflow-hidden">
                   <img
                     src={news.imageUrl}
                     alt={`News ${index + 1}`}

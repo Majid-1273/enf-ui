@@ -53,11 +53,14 @@ const ProductDirectory = () => {
         sub_head={'Product Directory / Solar Panels'} 
       />
       
-      <div className="lg:flex">
+      <div className="lg:flex px-4 md:px-6 lg:px-12 py-4 md:py-6 lg:py-8">
         <div className="flex-shrink-0">
           <FilterComponent />
         </div>
         <div className="flex-grow ml-4 space-y-4">
+        <h2 className="text-6xl font-bold text-green-600 mb-4 sm:mt-4 md:mt-0" data-aos="fade-up">
+        Products
+      </h2>
           {products.map((product, index) => (
             <DirectoryProductCard key={index} product={product} />
           ))}
