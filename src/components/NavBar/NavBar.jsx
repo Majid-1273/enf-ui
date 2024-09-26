@@ -12,7 +12,19 @@ import "./navbar.css";
 const NavBar = (props) => {
   const { bgImage, main_head, sub_head } = props;
   const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+
+  // Handle click for menu and prevent body scrolling when menu is open
+  const handleClick = () => {
+    const isMobileView = window.innerWidth <= 800; // Check if the screen width is <= 800px
+    setClick(!click);
+    if (isMobileView) {
+      if (!click) {
+        document.body.style.overflow = 'hidden'; // Disable scrolling only for mobile view
+      } else {
+        document.body.style.overflow = 'auto';   // Re-enable scrolling
+      }
+    }
+  };
 
   // Initialize AOS
   useEffect(() => {
@@ -24,8 +36,9 @@ const NavBar = (props) => {
   }, []);
 
   return (
-    <div className="custom-nav" style={{ backgroundImage: `url(${bgImage})` }} data-aos="fade"> {/* AOS applied here */}
-      <div className="custom-contact-nav" data-aos="fade-down" data-aos-delay="100"> {/* AOS for contact nav */}
+    <div className="custom-nav" style={{ backgroundImage: `url(${bgImage})` }} data-aos="fade">
+      {/* AOS applied to the header */}
+      <div className="custom-contact-nav" data-aos="fade-down" data-aos-delay="100">
         <div className="custom-social-icons">
           <FaInstagram size={25} className="custom-insta-logo hover:text-green-500" />
           <FaLinkedinIn size={25} className="custom-linkedin-logo hover:text-green-500" />
@@ -38,7 +51,7 @@ const NavBar = (props) => {
         </div>
       </div>
 
-      <div className="custom-navbar" data-aos="fade-down" data-aos-delay="200"> {/* AOS for navbar */}
+      <div className="custom-navbar" data-aos="fade-down" data-aos-delay="200">
         <Link to="/" className="custom-nav-links custom-logo-nav">
           <img src={Logo} alt="Company Logo" className="custom-logo-green" />
           <p className="custom-company-name">ILLUSION</p>
@@ -80,11 +93,10 @@ const NavBar = (props) => {
         </div>
       </div>
 
-      {/* AOS fade-up applied to main heading and subheading */}
       <p className="custom-main-heading" data-aos="fade-up" data-aos-delay="300">{main_head}</p>
       <p className="custom-sub-heading" data-aos="fade-up" data-aos-delay="400">{sub_head}</p>
     </div>
   );
-}
+};
 
 export default NavBar;

@@ -20,31 +20,31 @@ function Home() {
   const products = [
     {
       image: dummyImage,
-      name: "Majid Chonga",
+      name: "Inverter Panel",
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
     {
       image: dummyImage,
-      name: "Special Majid",
+      name: "Special Solar",
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
     {
       image: dummyImage,
-      name: "Majid Madra",
+      name: "Component Solar",
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
     {
       image: dummyImage,
-      name: "Majid Chonga",
+      name: "Panel Low",
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },
     {
       image: dummyImage,
-      name: "Majid Chonga",
+      name: "Panel High",
       category: "Solar panel",
       manufacturer: "Shinefar Sola",
     },

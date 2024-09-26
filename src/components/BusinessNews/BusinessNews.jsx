@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { FaChevronLeft, FaChevronRight, FaTag, FaCalendarAlt } from 'react-icons/fa';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import img1 from "../../assets/images/businessNewsImg1.png";
+import img2 from "../../assets/images/businessNewsImg2.png";
+import img3 from "../../assets/images/businessNewsImg3.png";
 
 const newsData = [
   {
@@ -9,21 +12,21 @@ const newsData = [
     title: "Exploring the Latest Innovations in Solar Technology",
     date: "Feb 2024",
     category: "Solar Panel",
-    imageUrl: "https://example.com/image1.jpg",
+    imageUrl: img1,
   },
   {
     country: "China",
     title: "Exploring the Latest Innovations in Solar Technology",
     date: "Feb 2024",
     category: "Solar Panel",
-    imageUrl: "https://example.com/image2.jpg",
+    imageUrl: img2,
   },
   {
     country: "China",
     title: "Exploring the Latest Innovations in Solar Technology",
     date: "Feb 2024",
     category: "Solar Panel",
-    imageUrl: "https://example.com/image3.jpg",
+    imageUrl: img3,
   },
 ];
 
